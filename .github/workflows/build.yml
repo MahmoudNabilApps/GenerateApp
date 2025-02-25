@@ -26,8 +26,8 @@ jobs:
       - name: Replace Placeholders
         run: |
           ls -R
-          sed -i "s/__APP_NAME__/${{ github.event.inputs.app_name }}/g" app/src/main/res/values/strings.xml
-          sed -i "s|__WEBSITE_URL__|${{ github.event.inputs.website_url }}|g" app/src/main/res/values/strings.xml
+          sed -i "s/__APP_NAME__/${{ github.event.inputs.app_name }}/g" App/src/main/res/values/strings.xml
+          sed -i "s|__WEBSITE_URL__|${{ github.event.inputs.website_url }}|g" App/src/main/res/values/strings.xml
 
       - name: Build APK
         run: ./gradlew assembleDebug
