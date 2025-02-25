@@ -9,12 +9,16 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
-      - name: Install Gradle
+      - name: Install Gradle 8.1.1
         run: |
-          sudo apt-get update
-          sudo apt-get install -y gradle
-      - name: Generate Gradle Wrapper
-        run: gradle wrapper
+          wget https://services.gradle.org/distributions/gradle-8.1.1-bin.zip
+          unzip gradle-8.1.1-bin.zip -d gradle
+          export PATH=$PWD/gradle/gradle-8.1.1/bin:$PATH
+          gradle --version
+      - name: Generate Gradle Wrapper Files
+        run: |
+          export PATH=$PWD/gradle/gradle-8.1.1/bin:$PATH
+          gradle wrapper
       - name: Commit Gradle Wrapper Files
         uses: EndBug/add-and-commit@v9
         with:
