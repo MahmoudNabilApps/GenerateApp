@@ -28,17 +28,17 @@ jobs:
 
       - name: Replace Placeholders
         run: |
-          sed -i "s/__APP_NAME__/${{ github.event.inputs.app_name }}/g" App/src/main/res/values/strings.xml
-          sed -i "s|__WEBSITE_URL__|${{ github.event.inputs.website_url }}|g" App/src/main/res/values/strings.xml
+          sed -i "s/__APP_NAME__/${{ github.event.inputs.app_name }}/g" app/src/main/res/values/strings.xml
+          sed -i "s|__WEBSITE_URL__|${{ github.event.inputs.website_url }}|g" app/src/main/res/values/strings.xml
 
       - name: Set Execution Permission for gradlew
         run: chmod +x ./gradlew
 
       - name: Build APK
-        run: ./gradlew :App:assembleDebug
+        run: ./gradlew :app:assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: GeneratedApp
-          path: App/build/outputs/apk/debug/app-debug.apk
+          path: app/build/outputs/apk/debug/app-debug.apk
