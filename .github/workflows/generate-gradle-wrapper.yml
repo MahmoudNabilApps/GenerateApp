@@ -1,0 +1,25 @@
+name: Generate Gradle Wrapper
+
+on:
+  workflow_dispatch:
+
+jobs:
+  generate-wrapper:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+      - name: Install Gradle
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gradle
+      - name: Generate Gradle Wrapper
+        run: gradle wrapper
+      - name: Commit Gradle Wrapper Files
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: |
+            gradlew
+            gradlew.bat
+            gradle/wrapper
+          message: "Add Gradle Wrapper files"
