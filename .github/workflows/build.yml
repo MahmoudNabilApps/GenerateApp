@@ -1,4 +1,4 @@
-name: Build Custom APK
+name: Build APK
 
 on:
   workflow_dispatch:
@@ -10,34 +10,30 @@ on:
         description: 'رابط الموقع'
         required: true
 
-env:
-  APP_NAME: ${{ github.event.inputs.app_name }}
-  WEBSITE_URL: ${{ github.event.inputs.website_url }}
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout Code
+        uses: actions/checkout@v4 # التحديث إلى v4
 
       - name: Set up JDK 17
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4 # التحديث إلى v4
         with:
           java-version: '17'
           distribution: 'zulu'
 
-      - name: Configure App
+      - name: Replace Placeholders
         run: |
-          sed -i "s/__APP_NAME__/$APP_NAME/g" app/src/main/res/values/strings.xml
-          sed -i "s|__WEBSITE_URL__|$WEBSITE_URL|g" app/src/main/res/values/strings.xml
-          sed -i "s/__PRIMARY_COLOR__/#2196F3/g" app/src/main/res/values/colors.xml
+          ls -R
+          sed -i "s/__APP_NAME__/${{ github.event.inputs.app_name }}/g" App/src/main/res/values/strings.xml
+          sed -i "s|__WEBSITE_URL__|${{ github.event.inputs.website_url }}|g" App/src/main/res/values/strings.xml
 
       - name: Build APK
         run: ./gradlew assembleDebug
 
       - name: Upload APK
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4 # التحديث إلى v4
         with:
-          name: ${{ env.APP_NAME }}
+          name: GeneratedApp
           path: app/build/outputs/apk/debug/app-debug.apk
