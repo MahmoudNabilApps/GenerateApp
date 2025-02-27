@@ -19,5 +19,13 @@
             </intent-filter>
         </activity>
 
+<activity
+    android:name=".ContactActivity"
+    android:label="@string/contact_title" />
+
+<activity
+    android:name=".PrivacyPolicyActivity"
+    android:label="@string/privacy_title" />
+
     </application>
 </manifest>
