@@ -1,46 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:layout_height="match_parent">
 
-    <TextView
+    <WebView
+        android:id="@+id/webViewPrivacy"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/contact_title"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:layout_marginBottom="32dp"/>
+        android:layout_height="match_parent"
+        android:visibility="gone" />
 
-    <TextView
-        android:id="@+id/tvEmail"
-        android:layout_width="match_parent"
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableStart="@drawable/ic_email"
-        android:drawablePadding="8dp"
-        android:text="@string/contact_email"
-        android:textSize="16sp"
-        android:layout_marginBottom="16dp"/>
+        android:layout_centerInParent="true" />
 
-    <TextView
-        android:id="@+id/tvPhone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableStart="@drawable/ic_phone"
-        android:drawablePadding="8dp"
-        android:text="@string/contact_phone"
-        android:textSize="16sp"
-        android:layout_marginBottom="16dp"/>
-
-    <TextView
-        android:id="@+id/tvAddress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableStart="@drawable/ic_location"
-        android:drawablePadding="8dp"
-        android:text="@string/contact_address"
-        android:textSize="16sp"/>
-
-</LinearLayout>
+</RelativeLayout>
