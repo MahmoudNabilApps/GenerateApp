@@ -9,10 +9,9 @@ class WebViewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_webview)
-
         val webView: WebView = findViewById(R.id.webView)
         webView.webViewClient = WebViewClient()
         webView.settings.javaScriptEnabled = true
-        webView.loadUrl(getString(R.string.website_url)) // يتم أخذ الرابط من strings.xml
+        webView.loadUrl(getString(R.string.website_url))
     }
 }
