@@ -9,6 +9,42 @@ on:
       website_url:
         description: 'رابط الموقع'
         required: true
+      app_logo:
+        description: 'صورة التطبيق بصيغة Base64'
+        required: true
+      contact_email:
+        description: 'البريد الالكتروني'
+        required: true
+      contact_phone:
+        description: 'رقم الهاتف'
+        required: true
+      contact_address:
+        description: 'العنوان'
+        required: true
+      privacy_policy_url:
+        description: 'رابط صفحة سياسة الخصوصية'
+        required: true
+      app_version:
+        description: 'اصدار التطبيق'
+        required: true
+      color_primary:
+        description: 'لون التطبيق الأساسي'
+        required: true
+      color_primary_variant:
+        description: 'لون التطبيق الثانوي'
+        required: true
+      color_on_primary:
+        description: 'لون النص على اللون الأساسي'
+        required: true
+      color_secondary:
+        description: 'لون التطبيق الثانوي الأساسي'
+        required: true
+      color_secondary_variant:
+        description: 'لون التطبيق الثانوي الثانوي'
+        required: true
+      color_on_secondary:
+        description: 'لون النص على اللون الثانوي'
+        required: true
 
 jobs:
   build:
@@ -23,13 +59,28 @@ jobs:
           java-version: '17'
           distribution: 'zulu'
 
-      - name: Check Files in Workspace
-        run: ls -lah
-
-      - name: Replace Placeholders
+      - name: Replace Placeholders in strings.xml
         run: |
           sed -i "s/__APP_NAME__/${{ github.event.inputs.app_name }}/g" app/src/main/res/values/strings.xml
           sed -i "s|__WEBSITE_URL__|${{ github.event.inputs.website_url }}|g" app/src/main/res/values/strings.xml
+          sed -i "s|__PRIVACY_URL__|${{ github.event.inputs.privacy_policy_url }}|g" app/src/main/res/values/strings.xml
+          sed -i "s/__EMAIL__/${{ github.event.inputs.contact_email }}/g" app/src/main/res/values/strings.xml
+          sed -i "s/__PHONE__/${{ github.event.inputs.contact_phone }}/g" app/src/main/res/values/strings.xml
+          sed -i "s/__ADDRESS__/${{ github.event.inputs.contact_address }}/g" app/src/main/res/values/strings.xml
+          sed -i "s/__APP_VERSION__/${{ github.event.inputs.app_version }}/g" app/src/main/res/values/strings.xml
+
+      - name: Replace Placeholders in colors.xml
+        run: |
+          sed -i "s/__COLOR_PRIMARY__/${{ github.event.inputs.color_primary }}/g" app/src/main/res/values/colors.xml
+          sed -i "s/__COLOR_PRIMARY_VARIANT__/${{ github.event.inputs.color_primary_variant }}/g" app/src/main/res/values/colors.xml
+          sed -i "s/__COLOR_ON_PRIMARY__/${{ github.event.inputs.color_on_primary }}/g" app/src/main/res/values/colors.xml
+          sed -i "s/__COLOR_SECONDARY__/${{ github.event.inputs.color_secondary }}/g" app/src/main/res/values/colors.xml
+          sed -i "s/__COLOR_SECONDARY_VARIANT__/${{ github.event.inputs.color_secondary_variant }}/g" app/src/main/res/values/colors.xml
+          sed -i "s/__COLOR_ON_SECONDARY__/${{ github.event.inputs.color_on_secondary }}/g" app/src/main/res/values/colors.xml
+
+      - name: Replace App Logo
+        run: |
+          echo "${{ github.event.inputs.app_logo }}" | base64 -d > app/src/main/res/drawable/logo.png
 
       - name: Set Execution Permission for gradlew
         run: chmod +x ./gradlew
