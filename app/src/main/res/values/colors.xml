@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">__COLOR_PRIMARY__</color>
-    <color name="colorPrimaryVariant">__COLOR_PRIMARY_VARIANT__</color>
-    <color name="colorOnPrimary">__COLOR_ON_PRIMARY__</color>
     <color name="colorSecondary">__COLOR_SECONDARY__</color>
-    <color name="colorSecondaryVariant">__COLOR_SECONDARY_VARIANT__</color>
-    <color name="colorOnSecondary">__COLOR_ON_SECONDARY__</color>
     <color name="purple_200">#BB86FC</color>
     <color name="purple_500">#6200EE</color>
     <color name="purple_700">#3700B3</color>
