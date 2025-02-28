@@ -1,4 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">__APP_NAME__</string>
     <string name="website_url">__WEBSITE_URL__</string>
+    <string name="app_version">__APP_VERSION__</string>
+    <string name="contact_email">__EMAIL__</string>
+    <string name="contact_phone">__PHONE__</string>
+    <string name="contact_address">__ADDRESS__</string>
+    <string name="privacy_policy_url">__PRIVACY_URL__</string>
 </resources>
