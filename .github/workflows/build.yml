@@ -30,20 +30,8 @@ on:
       color_primary:
         description: 'لون التطبيق الأساسي'
         required: true
-      color_primary_variant:
-        description: 'لون التطبيق الثانوي'
-        required: true
-      color_on_primary:
-        description: 'لون النص على اللون الأساسي'
-        required: true
       color_secondary:
-        description: 'لون التطبيق الثانوي الأساسي'
-        required: true
-      color_secondary_variant:
-        description: 'لون التطبيق الثانوي الثانوي'
-        required: true
-      color_on_secondary:
-        description: 'لون النص على اللون الثانوي'
+        description: 'لون التطبيق الثانوي'
         required: true
 
 jobs:
@@ -72,11 +60,7 @@ jobs:
       - name: Replace Placeholders in colors.xml
         run: |
           sed -i "s/__COLOR_PRIMARY__/${{ github.event.inputs.color_primary }}/g" app/src/main/res/values/colors.xml
-          sed -i "s/__COLOR_PRIMARY_VARIANT__/${{ github.event.inputs.color_primary_variant }}/g" app/src/main/res/values/colors.xml
-          sed -i "s/__COLOR_ON_PRIMARY__/${{ github.event.inputs.color_on_primary }}/g" app/src/main/res/values/colors.xml
           sed -i "s/__COLOR_SECONDARY__/${{ github.event.inputs.color_secondary }}/g" app/src/main/res/values/colors.xml
-          sed -i "s/__COLOR_SECONDARY_VARIANT__/${{ github.event.inputs.color_secondary_variant }}/g" app/src/main/res/values/colors.xml
-          sed -i "s/__COLOR_ON_SECONDARY__/${{ github.event.inputs.color_on_secondary }}/g" app/src/main/res/values/colors.xml
 
       - name: Replace App Logo
         run: |
